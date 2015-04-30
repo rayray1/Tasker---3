@@ -5,11 +5,17 @@
 <h3>Please login to access you task list</h3>
 
 <form method="post" action="/">
-	<span>Username: <input type="text" name="username" value="{{ request.form.username }}"></span>
-	<span>Password: <input type="text" name="password" value="{{ request.form.password }}"></span>
-	<input type="submit" value="Login">
+	{{ form.csrf_token }}
+	<p>
+		{{ form.name.label }}: {{ form.name }}
+		&nbsp;&nbsp;
+		{{ form.password.label }}: {{ form.password }}
+		<input type="submit" value="Submit">
+	</p>		
 </form>
 
-<p><em>Use 'admin' for username and password</em></p>
+<br>
+
+<p><em>Need an account? </em><a href="/register">Signup here</a></p>
 
 {% endblock %}
