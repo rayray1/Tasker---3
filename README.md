@@ -14,5 +14,11 @@ Database Relationships
 
 Session Management
 
+Error Handling
+
+Bootstrap
+
+Admin/User Permissions
+
 
 

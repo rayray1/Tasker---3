@@ -2,21 +2,51 @@
 {% block content %}
 
 <h1>Welcome to your Tasks Schedule</h1>
-<a href="/logout">Logout</a>
+<!-- <a href="/logout">Logout</a> -->
+
 <div class="add_task">
 	<h3>Add a New Task:</h3>
 
 		<form action="{{ url_for('new_task') }}" method="post">
 			{{ form.csrf_token }}
 				<p>
-					{{ form.name.label }}: {{ form.name }}<br>
-					{{ form.due_date.label }}: {{ form.due_date }}<br>
-					{{ form.priority.label }}: {{ form.priority }}
+					{{ form.name(placeholder="name") }}
+					<span class="error">
+						{% if form.name.errors %}
+							{% for error in form.name.errors %}
+								{{ error }}
+							{% endfor %}
+						{% endif %}
+					</span>
 				</p>
-				<p><input type="submit" value="Submit"></p>	
-		</form><!-- end form -->
-</div><!-- end add_task	 -->
 
+				<p>
+					{{ form.due_date(placeholder="due_date") }}
+					<span class="error">
+						{% if form.due_date.errors %}
+							{% for error in form.due_date.errors %}
+								{{ error }}
+							{% endfor %}
+						{% endif %}
+					</span>
+				</p>
+
+				<p>
+					{{ form.priority.label }}
+					{{ form.priority }}
+					<span class="error">
+						{% if form.priority.errors %}
+							{% for error in form.prority.errors %}
+								{{ error }}
+							{% endfor %}
+						{% endif %}
+					</span>
+				</p>
+
+				<p><input class="btn btn-default" type="submit" value="Submit"></p>
+		</form><!-- endform -->
+</div><!-- end add_task -->
+					
 
 <!-- OPEN TASKS -->
 <div class="entries">
@@ -51,11 +81,10 @@
 			{% endfor %}
 
 		</table><!-- end table -->
-	</div><!-- end datagrid -->
-	</br>
-	</br>
+	</div><!-- end datagrid -->	
 </div><!-- end entries	 -->
-
+</br>
+</br>
 
 <!-- CLOSED TASKS -->
 <div class="entries">
